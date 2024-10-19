@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000" # Porta do React
+      - "5000:5000" # Porta da API
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/trackerr
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
